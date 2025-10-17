@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Impulse LC — LMS Template</title>
+  <meta name="description" content="Simple LMS template (HTML / CSS / JS) for Impulse LC" />
+  <style>
+    /* Simple, modern CSS (no frameworks). Tweak variables below. */
+    :root{
+      --bg:#f7fafc; --card:#ffffff; --muted:#6b7280; --accent:#4f46e5; --accent-2:#10b981; --glass: rgba(255,255,255,0.6);
+      --radius:12px; --shadow: 0 6px 18px rgba(15,23,42,0.08);
+      --maxw:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background:linear-gradient(180deg, var(--bg), #eef2ff); color:#0f172a; -webkit-font-smoothing:antialiased;
+    }
+    .container{max-width:var(--maxw); margin:0 auto; padding:28px}
+
+    header{background:var(--card); border-radius:12px; padding:12px 18px; display:flex; align-items:center; justify-content:space-between; box-shadow: var(--shadow)}
+    .brand{display:flex; align-items:center; gap:12px}
+    .logo{width:44px; height:44px; border-radius:10px; background:linear-gradient(90deg,var(--accent),var(--accent-2)); display:flex; align-items:center; justify-content:center; color:white; font-weight:700}
+    nav a{margin:0 8px; color:var(--muted); text-decoration:none}
+    .btn{background:var(--accent); color:white; border:none; padding:8px 12px; border-radius:8px; cursor:pointer}
+    .btn.ghost{background:transparent; color:var(--accent); border:1px solid rgba(79,70,229,0.12)}
+
+    /* Hero */
+    .hero{display:grid; grid-template-columns:1fr 420px; gap:28px; align-items:center; margin-top:24px}
+    .hero-card{background:transparent}
+    h1{font-size:28px; margin:0 0 8px 0}
+    p.lead{color:var(--muted); margin:0 0 16px 0}
+
+    /* Quick progress card */
+    .card{background:var(--card); padding:16px; border-radius:var(--radius); box-shadow:var(--shadow)}
+    .progress-row{display:flex; align-items:center; justify-content:space-between; gap:12px}
+    .bar{height:8px; background:#e6eef7; border-radius:999px; overflow:hidden}
+    .bar span{display:block; height:100%; background:linear-gradient(90deg,var(--accent),var(--accent-2));}
+
+    /* Features grid */
+    .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:20px}
+    .feature{padding:12px}
+    .small{font-size:13px; color:var(--muted)}
+
+    /* AI chat / Homework / Videos layout */
+    .layout{display:grid; grid-template-columns:2fr 1fr; gap:16px; margin-top:20px}
+    .chat-window{height:320px; display:flex; flex-direction:column}
+    .messages{flex:1; overflow:auto; padding:10px; display:flex; flex-direction:column}
+    .msg{margin:8px 0; padding:8px 12px; border-radius:10px; max-width:78%}
+    .msg.tutor{background:#eef2ff; align-self:flex-start}
+    .msg.user{background:linear-gradient(90deg, #fef3c7, #fde68a); align-self:flex-end}
+    .input-row{display:flex; gap:8px; margin-top:8px}
+    input[type=text]{flex:1; padding:10px 12px; border-radius:8px; border:1px solid #e6edf3}
+
+    /* Video gallery */
+    .videos{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:12px}
+    .video-card{background:var(--card); border-radius:10px; overflow:hidden}
+    .video-card .thumb{height:120px; background:#eef2ff; display:flex; align-items:center; justify-content:center}
+
+    /* Games */
+    .games{display:flex; gap:12px; margin-top:12px}
+    .game{flex:1; padding:12px}
+
+    /* Progress dashboard */
+    .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:12px}
+    .big{font-size:28px; font-weight:700}
+
+    footer{margin:36px 0 80px 0; text-align:center; color:var(--muted)}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .layout{grid-template-columns:1fr}
+      .videos{grid-template-columns:repeat(2,1fr)}
+      .stats{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:560px){
+      .grid{grid-template-columns:1fr}
+      .videos{grid-template-columns:1fr}
+      .stats{grid-template-columns:1fr}
+      header{padding:12px}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">IM</div>
+        <div>
+          <div style="font-weight:600">Impulse LC</div>
+          <div class="small">LMS Template</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#courses">Courses</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#games">Games</a>
+        <button class="btn">Sign in</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-card">
+          <h1>Where a bright future starts</h1>
+          <p class="lead">Guided roadmaps, AI tutoring mock, interactive videos, and gamified vocabulary — all in one lightweight template.</p>
+
+          <div style="display:flex; gap:8px; margin-bottom:12px">
+            <button class="btn">Get started</button>
+            <button class="btn ghost">Explore demo</button>
+          </div>
+
+          <div class="card" style="display:flex; gap:12px; padding:12px; margin-top:6px">
+            <div style="flex:1">
+              <div class="small">Students</div>
+              <div style="font-weight:700">1,250</div>
+            </div>
+            <div style="flex:1">
+              <div class="small">Courses</div>
+              <div style="font-weight:700">24</div>
+            </div>
+            <div style="flex:1">
+              <div class="small">Avg. completion</div>
+              <div style="font-weight:700">68%</div>
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="card feature">
+              <div style="font-weight:700">Roadmap</div>
+              <div class="small">Clear learning paths and milestones.</div>
+            </div>
+            <div class="card feature">
+              <div style="font-weight:700">AI Chat Tutor</div>
+              <div class="small">Ask for summaries, sample answers, and tips.</div>
+            </div>
+            <div class="card feature">
+              <div style="font-weight:700">Homework</div>
+              <div class="small">Assign, submit, review.</div>
+            </div>
+            <div class="card feature">
+              <div style="font-weight:700">Videos & Movies</div>
+              <div class="small">Playlists & captions ready.</div>
+            </div>
+            <div class="card feature">
+              <div style="font-weight:700">Vocab Games</div>
+              <div class="small">Match words, daily challenges.</div>
+            </div>
+            <div class="card feature">
+              <div style="font-weight:700">Progress</div>
+              <div class="small">Track scores, streaks, and badges.</div>
+            </div>
+          </div>
+        </div>
+
+        <aside>
+          <div class="card">
+            <div style="font-weight:700">Quick progress</div>
+            <div style="margin-top:10px">
+              <div class="progress-row" style="margin-bottom:8px">
+                <div>
+                  <div style="font-weight:600">IELTS Foundation</div>
+                  <div class="small">12 lessons</div>
+                </div>
+                <div style="width:150px">
+                  <div class="bar"><span style="width:72%"></span></div>
+                  <div class="small" style="text-align:right">72%</div>
+                </div>
+              </div>
+
+              <div class="progress-row">
+                <div>
+                  <div style="font-weight:600">Speaking Mastery</div>
+                  <div class="small">8 lessons</div>
+                </div>
+                <div style="width:150px">
+                  <div class="bar"><span style="width:40%"></span></div>
+                  <div class="small" style="text-align:right">40%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:12px">
+            <div style="font-weight:700">Release Notes (Android)</div>
+            <div class="small" style="margin-top:8px">v1.2.0 — Improved video buffering and fixed submission bugs.</div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="layout" style="margin-top:18px">
+        <div>
+          <div class="card chat-window">
+            <div style="font-weight:700; margin-bottom:8px">AI Chat Tutor (mock)</div>
+            <div class="messages" id="messages">
+              <div class="msg tutor">Hello! How can I help you with IELTS today?</div>
+              <div class="msg user">Give me tips for Speaking Part 1.</div>
+              <div class="msg tutor">Keep answers short, practice follow-ups, and use examples.</div>
+            </div>
+            <div class="input-row">
+              <input id="chatInput" type="text" placeholder="Type a question for the AI tutor..." />
+              <button class="btn" id="sendBtn">Send</button>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:12px">
+            <div style="font-weight:700">Videos & Movies</div>
+            <div class="videos" id="videos">
+              <div class="video-card">
+                <div class="thumb">Video 1</div>
+                <div style="padding:8px">Lecture 1<br><span class="small">Duration: 12m</span></div>
+              </div>
+              <div class="video-card">
+                <div class="thumb">Video 2</div>
+                <div style="padding:8px">Lecture 2<br><span class="small">Duration: 9m</span></div>
+              </div>
+              <div class="video-card">
+                <div class="thumb">Video 3</div>
+                <div style="padding:8px">Lecture 3<br><span class="small">Duration: 15m</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside>
+          <div class="card">
+            <div style="font-weight:700">Homework</div>
+            <ul style="margin-top:10px; padding-left:18px" id="homeworkList">
+              <li>Lesson 3 — Submit essay (due Oct 20)</li>
+              <li>Listening Quiz — Auto-graded</li>
+              <li>Pronunciation recording — pending</li>
+            </ul>
+            <button class="btn" style="margin-top:10px" id="viewHw">View all</button>
+          </div>
+
+          <div class="card" style="margin-top:12px">
+            <div style="font-weight:700">Vocabulary Games</div>
+            <div class="games" id="games">
+              <div class="game card">
+                <div style="font-weight:600">Match the Word</div>
+                <div class="small">Drag tiles to match meanings.</div>
+                <button class="btn" style="margin-top:10px">Play</button>
+              </div>
+              <div class="game card">
+                <div style="font-weight:600">Speed Typing</div>
+                <div class="small">Type synonyms quickly.</div>
+                <button class="btn" style="margin-top:10px">Play</button>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section style="margin-top:20px">
+        <div class="card">
+          <div style="display:flex; align-items:center; justify-content:space-between">
+            <div>
+              <div style="font-weight:700">Progress Dashboard (Student)</div>
+              <div class="small">Overview of streaks, coins, and score</div>
+            </div>
+            <div style="text-align:right">
+              <div class="small">Overall score</div>
+              <div class="big">78%</div>
+            </div>
+          </div>
+
+          <div class="stats">
+            <div class="card" style="padding:16px; text-align:center">
+              <div class="small">Streak</div>
+              <div class="big">14</div>
+              <div class="small">Days in a row</div>
+            </div>
+            <div class="card" style="padding:16px; text-align:center">
+              <div class="small">Coins & Gems</div>
+              <div class="big">1,200</div>
+              <div class="small">Use in store</div>
+            </div>
+            <div class="card" style="padding:16px; text-align:center">
+              <div class="small">CEFR Estimate</div>
+              <div class="big">B1+</div>
+              <div class="small">Level</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <div class="small">Impulse LC · Build better learners · Telegram: @ImpulseLC</div>
+    </footer>
+  </div>
+
+  <script>
+    // Lightweight front-end behavior for the template (no backend)
+    const messagesEl = document.getElementById('messages');
+    const chatInput = document.getElementById('chatInput');
+    const sendBtn = document.getElementById('sendBtn');
+
+    function addMessage(text, who='user'){
+      const d = document.createElement('div');
+      d.className = 'msg ' + (who === 'tutor' ? 'tutor' : 'user');
+      d.textContent = text;
+      messagesEl.appendChild(d);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    sendBtn.addEventListener('click', ()=>{
+      const text = chatInput.value.trim();
+      if(!text) return;
+      addMessage(text, 'user');
+      chatInput.value = '';
+      // Simple simulated tutor reply
+      setTimeout(()=>{
+        const reply = generateReply(text);
+        addMessage(reply, 'tutor');
+      }, 700 + Math.random()*700);
+    });
+
+    chatInput.addEventListener('keydown', (e)=>{ if(e.key === 'Enter') sendBtn.click(); });
+
+    function generateReply(q){
+      // very small rule-based mock replies to make the UI feel interactive
+      const ql = q.toLowerCase();
+      if(ql.includes('speaking')) return 'Practice short answers, use examples, and avoid long pauses.';
+      if(ql.includes('writing')) return 'Structure your essay: intro, 2 body paragraphs, conclusion. Support with examples.';
+      if(ql.includes('vocab')) return 'Learn 5 new words daily and use them in sentences.';
+      return 'Good question — try to be specific (e.g., "ask for synonyms" or "ask for sample answers").';
+    }
+
+    // Mock: load more videos dynamically (front-end only)
+    document.getElementById('viewHw').addEventListener('click', ()=>{
+      alert('This is a template. Hook this button to your backend to view all homework.');
+    });
+
+    // Simple demo: allow clicking video thumbs to open a modal (native alert here)
+    document.querySelectorAll('.video-card .thumb').forEach((el,i)=>{
+      el.style.cursor = 'pointer';
+      el.addEventListener('click', ()=> alert('Open video player for Video ' + (i+1) + '\n\nReplace with real player (YouTube/IFrame/HTML5)'));
+    });
+
+    // Accessibility: focus styles for keyboard users
+    document.addEventListener('keyup', (e)=>{
+      if(e.key === 'Tab') document.body.style.outline = 'none';
+    });
+  </script>
+
+</body>
+</html>
